@@ -23,5 +23,12 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f030000;
+        public static final int beginindex=0x7f030002;
+        public static final int charset=0x7f030004;
+        public static final int endindex=0x7f030003;
+        public static final int url=0x7f030001;
+        public static final int yourphonebutton=0x7f030007;
+        public static final int yourphonelabel=0x7f030006;
+        public static final int yourphonenum=0x7f030005;
     }
 }

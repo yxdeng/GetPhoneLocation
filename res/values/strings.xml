@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_name">GetPhoneLocation</string>
+    <string name="url">http://wap.ip138.com/sim.asp?mobile=</string>
+    <string name="beginindex">title=</string>
+    <string name="endindex">ip138.com</string>
+    <string name="charset">utf-8</string>
+    <string name="yourphonenum">1</string>
+    <string name="yourphonelabel">phone:</string>
+    <string name="yourphonebutton">submit</string>
 </resources>

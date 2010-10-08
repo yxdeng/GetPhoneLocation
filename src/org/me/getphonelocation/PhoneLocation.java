@@ -68,7 +68,9 @@ public class PhoneLocation extends Activity {
         System.out.println(phone);
         CharSequence rep = "";
         try {
-            URL url = new URL("http://wap.ip138.com/sim.asp?mobile=" + phone);
+//            URL url = new URL("http://wap.ip138.com/sim.asp?mobile=" + phone);
+//            System.out.println("url:"+this.getString(R.string.url));;
+            URL url = new URL(this.getString(R.string.url) + phone);
             HttpURLConnection hcon = (HttpURLConnection) url.openConnection();
 //            hcon.getInputStream();
             // http正文内，因此需要设为true, 默认情况下是false;
@@ -77,15 +79,17 @@ public class PhoneLocation extends Activity {
             // 设置是否从httpUrlConnection读入，默认情况下是true;
             hcon.setDoInput(true);
             hcon.connect();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(hcon.getInputStream(), "utf-8"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(hcon.getInputStream(), this.getString(R.string.charset)));
             String temp = "";
             while (reader.read() != -1) {
                 temp += reader.readLine();
 
             }
             reader.close();
-            int begin = temp.indexOf("title=");
-            int end = temp.lastIndexOf("ip138.com");
+//            int begin = temp.indexOf("title=");
+            int begin = temp.indexOf(this.getString(R.string.beginindex));
+//            int end = temp.lastIndexOf("ip138.com");
+            int end = temp.lastIndexOf(this.getString(R.string.endindex));
             System.out.println(temp);
 //            resulttext.setText(rep);
             temp = temp.substring(begin, end);
