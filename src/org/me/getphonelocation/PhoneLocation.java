@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.me.getphonelocation;
 
 import android.app.Activity;
@@ -63,20 +59,19 @@ public class PhoneLocation extends Activity {
         });
     }
 
-//    private OnClickListener
+    /**
+     * Use the method to comunicate with the server to get info
+     * @param phone the phone number
+     * @return CharSequence the place info
+     */
     private CharSequence getPlace(CharSequence phone) {
         System.out.println(phone);
         CharSequence rep = "";
         try {
-//            URL url = new URL("http://wap.ip138.com/sim.asp?mobile=" + phone);
-//            System.out.println("url:"+this.getString(R.string.url));;
+            //communicate with the server
             URL url = new URL(this.getString(R.string.url) + phone);
             HttpURLConnection hcon = (HttpURLConnection) url.openConnection();
-//            hcon.getInputStream();
-            // http正文内，因此需要设为true, 默认情况下是false;
             hcon.setDoOutput(true);
-
-            // 设置是否从httpUrlConnection读入，默认情况下是true;
             hcon.setDoInput(true);
             hcon.connect();
             BufferedReader reader = new BufferedReader(new InputStreamReader(hcon.getInputStream(), this.getString(R.string.charset)));
@@ -86,25 +81,17 @@ public class PhoneLocation extends Activity {
 
             }
             reader.close();
-//            int begin = temp.indexOf("title=");
+
+            //anlisize the stream
             int begin = temp.indexOf(this.getString(R.string.beginindex));
-//            int end = temp.lastIndexOf("ip138.com");
             int end = temp.lastIndexOf(this.getString(R.string.endindex));
-            System.out.println(temp);
-//            resulttext.setText(rep);
             temp = temp.substring(begin, end);
             String[] abc = temp.split("<|>|:");
-//            for (int i = 0; i < abc.length; i++) {
-//                System.out.println(i + ":" + abc[i]);
-//            }
             if (abc.length <= 5) {
                 rep = rep + abc[2];
             } else {
                 rep = rep + abc[2] + "\n" + abc[4] + "\n" + abc[6];
             }
-//            rep = rep + temp;
-//            System.out.println(rep);
-
         } catch (Exception ex) {
             Logger.getLogger(PhoneLocation.class.getName()).log(Level.SEVERE, null, ex);
         }
